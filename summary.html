@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Summary - Cashflow</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-wallet2"></i> Cashflow
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                    <ul class="navbar-nav ms-auto gap-1">
+                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-list-ul"></i> Transactions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="search.html"><i class="bi bi-search"></i> Search</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="summary.html"><i class="bi bi-bar-chart"></i> Summary</a></li>
+                        <li class="nav-item"><a class="btn-primary-cf ms-2" href="create.html"><i class="bi bi-plus-lg"></i> New Transaction</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mt-page">
+
+            <div class="page-header">
+                <h1>Financial Summary</h1>
+                <p>Summary of your income, expenses, and balance.</p>
+            </div>
+
+            <!-- Loading state -->
+            <div id="loading-state" class="text-center py-5">
+                <div class="cf-spinner"></div>
+                <p class="text-muted-cf mt-2" style="font-size:0.85rem;">Calculating summary...</p>
+            </div>
+
+            <!-- Three summary cards (hidden until complete load) -->
+            <div id="summary-cards" class="row g-4 d-none">
+
+                <!-- Card: total for income -->
+                <div class="col-md-4">
+                    <div class="summary-card income">
+                        <div class="label">
+                            <i class="bi bi-arrow-down-circle"></i> Income Total
+                        </div>
+                        <!-- Value inserted via JS -->
+                        <div class="value" id="income-value">—</div>
+                    </div>
+                </div>
+
+                <!-- Card: total for expenses -->
+                <div class="col-md-4">
+                    <div class="summary-card expense">
+                        <div class="label">
+                            <i class="bi bi-arrow-up-circle"></i> Expenses Total
+                        </div>
+                        <div class="value" id="expense-value">—</div>
+                    </div>
+                </div>
+
+                <!-- Card: Final Balance -->
+                <div class="col-md-4">
+                    <div class="summary-card balance">
+                        <div class="label">
+                            <i class="bi bi-wallet"></i> Final Balance
+                        </div>
+                        <div class="value" id="balance-value">—</div>
+                        <div id="balance-message" style="font-size: 0.82rem; margin-top: 0.5rem; color: var(--color-text-muted);"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Link to see transactions -->
+            <div id="summary-footer" class="d-none mt-4" style="text-align: center;">
+                <a href="index.html" class="btn-secondary-cf" style="display: inline-flex;">
+                    <i class="bi bi-list-ul"></i> See all transactions
+                </a>
+            </div>
+
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/summary.js"></script>
+
+    </body>
+</html>

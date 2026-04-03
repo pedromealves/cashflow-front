@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Transaction — Cashflow</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-wallet2"></i> Cashflow
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                    <ul class="navbar-nav ms-auto gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="bi bi-list-ul"></i> Transactions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="search.html">
+                                <i class="bi bi-search"></i> Search
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="summary.html">
+                                <i class="bi bi-bar-chart"></i> Summary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mt-page">
+
+            <div class="page-header">
+                <a href="index.html" class="btn-secondary-cf mb-3" style="width: fit-content;">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+                 <!-- ID transaction inserted via JS -->
+                <h1>Edit Transaction <span id="transaction-id-title" style="color: var(--color-text-muted); font-size: 1rem; font-weight: 500;"></span></h1>
+                <p>Edit the fields you wish to update.</p>
+            </div>
+             <!-- Loading state while searching for transaction data -->
+            <div id="loading-state" class="cf-card text-center py-4" style="max-width: 600px;">
+                <div class="cf-spinner"></div>
+                <p class="text-muted-cf mt-2" style="font-size:0.85rem;">Loading data...</p>
+            </div>
+
+            <!-- Error state (Invalid ID or transaction not found) -->
+            <div id="error-state" class="cf-card d-none" style="max-width: 600px; text-align: center; padding: 2rem;">
+                <p style="color: var(--color-expense); margin: 0;">
+                    <i class="bi bi-exclamation-circle"></i>
+                    Transaction not found.
+                </p>
+                <a href="index.html" class="btn-secondary-cf mt-3" style="display: inline-flex;">Back to list</a>
+            </div>
+
+            <!-- Editing form (initially hidden, shown after data is fetched) -->
+            <div class="cf-card d-none" id="form-card" style="max-width: 600px;">
+                <form id="edit-form" novalidate>
+                    <div class="mb-4">
+                        <label class="cf-label" for="description">Description</label>
+                        <input type="text" id="description" class="cf-input" placeholder="Ex: Compras no mercado" maxlength="255">
+                        <span class="cf-error" id="error-description">The description cannot be empty.</span>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <label class="cf-label" for="amount">Amount (R$)</label>
+                            <input type="number" id="amount" class="cf-input" placeholder="0,00" min="0" step="0.01">
+                            <span class="cf-error" id="error-amount">Enter a positive value.</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="cf-label" for="date">Date</label>
+                            <input type="date" id="date" class="cf-input">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <label class="cf-label" for="type">Type</label>
+                            <select id="type" class="cf-select">
+                                <option value="">Select...</option>
+                                <option value="INCOME">Income</option>
+                                <option value="EXPENSE">Expense</option>
+                            </select>
+                            <span class="cf-error" id="error-type">Select the transaction type.</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="cf-label" for="category">Category</label>
+                            <select id="category" class="cf-select">
+                                <option value="">Select...</option>
+                                <option value="FOOD">Food</option>
+                                <option value="LEISURE">Leisure</option>
+                                <option value="HEALTH">Health</option>
+                                <option value="SALARY">Salary</option>
+                            </select>
+                            <span class="cf-error" id="error-category">Select the category.</span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a href="index.html" class="btn-secondary-cf">Cancel</a>
+                        <button type="submit" class="btn-primary-cf" id="submit-btn">
+                            <i class="bi bi-check-lg"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/edit.js"></script>
+    </body>
+</html>
